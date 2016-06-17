@@ -1,0 +1,15 @@
+# IntelliJ project files #
+.idea
+classes
+build
+*.class
+*.iml
+out
+
+# Gradle
+.gradle
+
+# Package Files #
+*.jar
+*.war
+*.ear
