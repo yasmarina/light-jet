@@ -16,20 +16,19 @@ import java.io.IOException;
 @WebFilter(value = {"/*"},
         initParams = {@WebInitParam(name = "characterEncoding", value = "utf-8")})
 public class ContentTypeFilter implements HttpFilter {
-
     private String encoding;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         encoding = filterConfig.getInitParameter("characterEncoding");
+        log.info("Content type " + "text/html;charset=" + encoding + " is used");
+        log.info("Encoding " + encoding + " is used");
     }
 
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         response.setContentType("text/html;charset=" + encoding);
-        log.info("Content type set to " + "text/html;charset=" + encoding);
         request.setCharacterEncoding(encoding);
-        log.info("Encoding set to " + encoding);
 
         chain.doFilter(request, response);
     }

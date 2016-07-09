@@ -23,6 +23,5 @@ dependencies {
     compile 'org.glassfish.web:javax.servlet.jsp.jstl:+'
 
     compile 'org.projectlombok:lombok:+'
-    // TODO: Add logs to code
     compile 'log4j:log4j:+'
 }

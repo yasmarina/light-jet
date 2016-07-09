@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 @FunctionalInterface
 public interface Exceptional<T, E extends Throwable> extends Wrapper<Either<T, E>> {
+    org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Exceptional.class);
 
     static <T, E extends Throwable> Exceptional<T, E> wrap(Either<T, E> either) {
         return () -> either;
@@ -26,11 +27,11 @@ public interface Exceptional<T, E extends Throwable> extends Wrapper<Either<T, E
     }
 
     default T getOrThrow() throws E {
-        // TODO: log the exception
         final Either<T, E> either = toSrc();
         if (either.isLeft()) {
             return either.left();
         } else {
+            log.error(either.right());
             throw either.right();
         }
     }
